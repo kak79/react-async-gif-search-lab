@@ -4,17 +4,29 @@ import React from 'react'
 
 class GifSearch extends React.Component {
 
+  state = {
+    search: ""
+  }
+
+  handleSubmit = e => {
+    e.preventDefault()
+    this.props.fetchGifs(this.state.search)
+  }
+
   render() {
-    return(
-      <form>
-        <input type="text">
-
-        </input>
-
-        <input type="submit">
-          
-        </input>
-      </form>
+    return (
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          <input 
+            type="text" 
+            value={this.state.search} 
+            onChange={e => this.setState({search: e.target.value})} 
+          />
+          <input 
+            type="submit"
+          />
+        </form>
+      </div>
     )
   }
 
